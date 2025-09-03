@@ -1,6 +1,6 @@
 @import "tailwindcss";
-
-
+/* Flowbite styles */
+@import 'flowbite';
 
 /* Marquee animation */
 @keyframes marquee {

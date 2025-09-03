@@ -1,9 +1,20 @@
+import {BrowserRouter as Router, Route, Routes, BrowserRouter,Navigate} from 'react-router-dom'
+import Login from './pages/Login';
+import Admindashboard from './pages/Admindashboard';
+
 
 function App() {
   
 
   return (
-    <div className="overflow-hidden bg-gray-100 h-20 flex items-center"> <h1 className="text-3xl font-bold text-indigo-600 marquee" >Welcome to EMS 🚀</h1></div>
+    <BrowserRouter>
+
+      <Routes>
+        <Route path="/" element={<Navigate to="/admin-dashboard"/>}></Route> 
+        <Route path="/login" element={<Login />}></Route> 
+        <Route path="/admin-dashboard" element={<Admindashboard />}></Route> 
+      </Routes>
+    </BrowserRouter>
   )
 }
 
