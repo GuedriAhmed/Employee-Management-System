@@ -8,12 +8,12 @@ const login = async (req, res) => {
 
     const user = await User.findOne({ email });
     if (!user) {
-      return res.status(404).json({ message: "Invalid email" }); // return prevents further execution
+      return res.status(400).json({success: false, error : "Invalid email" }); // return prevents further execution
     }
 
     const isMatch = await bcrypt.compare(password, user.password);
     if (!isMatch) {
-      return res.status(404).json({ message: "Invalid password" });
+      return res.status(400).json({success: false, error : "Invalid password" });
     }
 
     const token = jwt.sign(
@@ -29,11 +29,11 @@ const login = async (req, res) => {
     });
 
   } catch (error) {
-    console.error(error);
-    if (!res.headersSent) {
-      return res.status(500).json({ message: "Server error" });
-    }
+      return res.status(500).json({ success: false,error: error.message });
   }
 };
+const verify =  (req, res) => {
+  return res.status(200).json({ success: true, user: req.user });
+}
 
-export { login };
+export { login,verify };
