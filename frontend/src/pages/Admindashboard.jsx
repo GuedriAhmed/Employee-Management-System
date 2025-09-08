@@ -1,19 +1,25 @@
 import React from "react";
 import { useAuth } from "../context/authcontext";
-import { useNavigate } from "react-router-dom";
+import AdminSidebar from "../components/dashboard/AdminSidebar";
+import Navbar from "../components/dashboard/Navbar";
 
 
 const Admindashboard = () => {
-    const {user,loading} = useAuth();
-    const navigate = useNavigate();
-    if (loading) {
-        return <div>Loading...</div>;
-    }
+    const {user,} = useAuth();
     
-    if (!user) {
-        navigate("/login");
-    }
-    return <div>Admindashboard {user && user.name}</div>;
+    return (
+<div className="flex h-screen"> 
+<AdminSidebar />
+<div className='flex-1 flex flex-col'>
+    <Navbar />
+</div>
+
+  
+
+</div>
+      
+
+    )
 }
 
 export default Admindashboard;
