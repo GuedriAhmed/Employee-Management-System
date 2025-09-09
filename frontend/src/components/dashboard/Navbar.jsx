@@ -8,7 +8,7 @@ const Navbar = ({ onLogout }) => {
          <nav className="bg-gray-800 text-white h-16 flex items-center justify-between px-6 shadow-md">
       {/* Left side: Logo / Title */}
       <div className="flex items-center gap-3">
-        <h1 className="text-xl font-bold">Guden tag! {user.name}</h1>
+        <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold ">Guden tag! {user.name}</h1>
       </div>
 
       {/* Right side: Logout Button */}

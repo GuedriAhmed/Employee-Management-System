@@ -9,9 +9,9 @@ const AdminSidebar = () => {
   const [isOpen, setIsOpen] = useState(true); // sidebar expanded by default
 
   const menuItems = [
-    { name: "Dashboard", icon: <FaTachometerAlt />, path: "/dashboard" },
+    { name: "Dashboard", icon: <FaTachometerAlt />, path: "/admin-dashboard" },
     { name: "Employees", icon: <FaUserAlt />, path: "/employees" },
-     { name: "Departements", icon: <FaBuilding />, path: "/Departements" },
+     { name: "Departements", icon: <FaBuilding />, path: "/admin-dashboard/departments" },
        { name: "Leave", icon: <FaCalendarAlt  />, path: "/Leave" },   
          { name: "Salary", icon: <FaMoneyBillWave  />, path: "/Salary" },
     
