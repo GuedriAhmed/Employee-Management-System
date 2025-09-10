@@ -16,6 +16,9 @@ const Login = () => {
             if(response.data.success){
                 login(response.data.user);
                 localStorage.setItem("token", response.data.token);
+                //consol my token
+                console.log("Token:", response.data.token);
+                // Redirect based on user role
                 if (response.data.user.role === "admin") {
                     Navigate("/admin-dashboard");
                 } else {

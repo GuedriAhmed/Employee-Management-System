@@ -1,24 +1,27 @@
-import React, { useState }  from "react";
+import React, { useState } from "react";
 
 import { Link } from "react-router-dom";
-import { MagnifyingGlassIcon, PlusIcon, PencilSquareIcon, TrashIcon } from "@heroicons/react/24/outline";
+import {
+  MagnifyingGlassIcon,
+  PlusIcon,
+  PencilSquareIcon,
+  TrashIcon,
+} from "@heroicons/react/24/outline";
 import { motion } from "framer-motion";
 
-
 const DepartmentList = () => {
-       const [searchTerm, setSearchTerm] = useState("");
+  const [searchTerm, setSearchTerm] = useState("");
 
-
-    const departments = [
+  const departments = [
     { id: 1, name: "IT" },
     { id: 2, name: "Database" },
     { id: 3, name: "Logistic" },
   ];
-    // Filter departments by search term
+  // Filter departments by search term
   const filteredDepartments = departments.filter((dept) =>
     dept.name.toLowerCase().includes(searchTerm.toLowerCase())
   );
-     // Framer Motion variants for rows
+  // Framer Motion variants for rows
   const rowVariants = {
     hidden: { opacity: 0, y: 20 },
     visible: (i) => ({
@@ -28,8 +31,8 @@ const DepartmentList = () => {
     }),
   };
 
-    return (
-      <div className="min-h-screen bg-gray-50 p-6">
+  return (
+    <div className="min-h-screen bg-gray-50 p-6">
       {/* Centered Search Input */}
       <div className="flex justify-center mb-6">
         <div className="relative w-full max-w-md">
@@ -49,7 +52,7 @@ const DepartmentList = () => {
         <h2 className="text-2xl font-bold text-gray-800">Manage Departments</h2>
 
         <Link
-          to="/admin-dashboard/departments/add-department"
+          to="/admin-dashboard/add-department"
           className="flex items-center gap-2 bg-blue-600 text-white px-4 py-2 rounded-lg shadow hover:bg-blue-700 transition"
         >
           <PlusIcon className="h-5 w-5" />
@@ -62,9 +65,15 @@ const DepartmentList = () => {
         <table className="min-w-full divide-y divide-gray-200">
           <thead className="bg-gray-100">
             <tr>
-              <th className="px-6 py-3 text-left text-sm font-semibold text-gray-600">S No</th>
-              <th className="px-6 py-3 text-left text-sm font-semibold text-gray-600">Department</th>
-              <th className="px-6 py-3 text-right text-sm font-semibold text-gray-600">Actions</th>
+              <th className="px-6 py-3 text-left text-sm font-semibold text-gray-600">
+                S No
+              </th>
+              <th className="px-6 py-3 text-left text-sm font-semibold text-gray-600">
+                Department
+              </th>
+              <th className="px-6 py-3 text-right text-sm font-semibold text-gray-600">
+                Actions
+              </th>
             </tr>
           </thead>
           <tbody className="bg-white divide-y divide-gray-200">
@@ -75,10 +84,16 @@ const DepartmentList = () => {
                 initial="hidden"
                 animate="visible"
                 variants={rowVariants}
-                className={idx % 2 === 0 ? "bg-gray-50 hover:bg-gray-100 transition" : "hover:bg-gray-100 transition"}
+                className={
+                  idx % 2 === 0
+                    ? "bg-gray-50 hover:bg-gray-100 transition"
+                    : "hover:bg-gray-100 transition"
+                }
               >
                 <td className="px-6 py-4">{idx + 1}</td>
-                <td className="px-6 py-4 font-medium text-gray-700">{dept.name}</td>
+                <td className="px-6 py-4 font-medium text-gray-700">
+                  {dept.name}
+                </td>
                 <td className="px-6 py-4 flex justify-end gap-2">
                   <button className="flex items-center gap-1 px-3 py-1 bg-green-500 text-white rounded-md hover:bg-green-600 transition">
                     <PencilSquareIcon className="h-4 w-4" />
@@ -98,10 +113,12 @@ const DepartmentList = () => {
       {/* Footer */}
       <div className="flex justify-between items-center mt-4 text-sm text-gray-600">
         <span>Rows per page: 10</span>
-        <span>1–{filteredDepartments.length} of {departments.length}</span>
+        <span>
+          1–{filteredDepartments.length} of {departments.length}
+        </span>
       </div>
     </div>
-    );
-}
+  );
+};
 
 export default DepartmentList;
