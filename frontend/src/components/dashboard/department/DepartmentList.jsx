@@ -21,7 +21,11 @@ const DepartmentList = () => {
 
   const [departments,setDepartments] = useState([]);
   const [depLoading, setDeploading] = useState(false)
-   const [searchTerm, setSearchTerm] = useState("");
+  const[filteredDepartments,setFilterDepartment] = useState([]);
+  const onDepartmentDelete = async (id) => {
+    const data =  departments.filter(dep => dep._id !== id)
+    setDepartments(data)
+   }
   
   useEffect(() => {
     const fetchDepartments = async () => {
@@ -40,11 +44,12 @@ const DepartmentList = () => {
               _id: dep._id,
               sno: sno++,
               dep_name: dep.dep_name,
-              action : (<DepartmentButtons _id={dep._id}/>)
+              action : (<DepartmentButtons _id={dep._id} onDepartmentDelete={onDepartmentDelete}/>)
             }
           )
         )
         setDepartments(data);
+        setFilterDepartment(data);
         }
 
      } catch (error) {
@@ -59,10 +64,7 @@ const DepartmentList = () => {
   }, []);
 
 
-  // Filter departments by search term
-  const filteredDepartments = departments.filter((dept) =>
-  dept.dep_name.toLowerCase().includes(searchTerm.toLowerCase())
-);
+
   // Framer Motion variants for rows
   const rowVariants = {
     hidden: { opacity: 0, y: 20 },
@@ -72,6 +74,11 @@ const DepartmentList = () => {
       transition: { delay: i * 0.1, duration: 0.5, ease: "easeOut" },
     }),
   };
+
+  const filterDepartments = (e) =>{
+    const records= departments.filter((dep)=> dep.dep_name.toLowerCase().includes(e.target.value.toLowerCase()))
+    setFilterDepartment(records)
+  }
 
   return (
 <>{depLoading ? <div>Loading ... </div> : 
@@ -83,8 +90,7 @@ const DepartmentList = () => {
           <input
             type="text"
             placeholder="Search Department..."
-            value={searchTerm}
-            onChange={(e) => setSearchTerm(e.target.value)}
+            onChange={filterDepartments}
             className="w-full pl-10 pr-4 py-2 border rounded-lg shadow-sm focus:ring-2 focus:ring-blue-500 focus:outline-none"
           />
         </div>
@@ -105,7 +111,7 @@ const DepartmentList = () => {
 
       {/* Table */}
       <DataTable 
-      columns={columns} data={departments}
+      columns={columns} data={filteredDepartments}
       />
 
       {/* Footer */}
