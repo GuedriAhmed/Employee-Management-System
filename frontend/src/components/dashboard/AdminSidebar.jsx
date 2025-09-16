@@ -10,7 +10,7 @@ const AdminSidebar = () => {
 
   const menuItems = [
     { name: "Dashboard", icon: <FaTachometerAlt />, path: "/admin-dashboard" },
-    { name: "Employees", icon: <FaUserAlt />, path: "/employees" },
+    { name: "Employees", icon: <FaUserAlt />, path: "/admin-dashboard/employees" },
      { name: "Departements", icon: <FaBuilding />, path: "/admin-dashboard/departments" },
        { name: "Leave", icon: <FaCalendarAlt  />, path: "/Leave" },   
          { name: "Salary", icon: <FaMoneyBillWave  />, path: "/Salary" },
