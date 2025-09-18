@@ -156,8 +156,8 @@ const Add = () => {
               className="w-full px-4 py-2 border rounded-lg shadow-sm focus:ring-2 focus:ring-blue-500 focus:outline-none"
             >
               <option value="">Select Status</option>
-              <option value="Test1">Test1</option>
-              <option value="Test2">Test2</option>
+              <option value="Test1">Single</option>
+              <option value="Test2">Married</option>
             </select>
           </div>
 
