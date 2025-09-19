@@ -14,6 +14,7 @@ import {
 const View = () => {
   const{id}= useParams()
   const[employee,setEmployee] = useState(null)
+
    useEffect(() => {
     const fetchEmployee = async () => {
      try {

@@ -9,6 +9,7 @@ import { columns } from "../../utils/EmployeeHelper";
 const List = () => {
   const[employees,setEmployees] = useState([])
   const [empLoading, setEmploading] = useState(false)
+  const[filteredEmployee,setfilteredEmployees]=useState([])
 
   useEffect(() => {
     const fetchEmployees = async () => {
@@ -35,7 +36,7 @@ const List = () => {
           )
         )
         setEmployees(data);
-      
+      setfilteredEmployees(data)
         }
 
      } catch (error) {
@@ -48,9 +49,14 @@ const List = () => {
     }
     fetchEmployees();
   }, []);
-     const [search, setSearch] = useState("");
 
-  
+    const handleFilter = (e) =>{
+      const records = employees.filter((emp)=>(
+        emp.name.toLowerCase().includes(e.target.value.toLowerCase())
+      ))
+      setfilteredEmployees(records)
+    }
+ 
 
   
 
@@ -71,6 +77,7 @@ const List = () => {
               type="text"
               placeholder="Search employee..."
               className="px-4 py-2 border rounded-lg shadow-sm focus:ring-2 focus:ring-blue-500 focus:outline-none w-full sm:w-64"
+              onChange={handleFilter}
             />
             <Link to="/admin-dashboard/add-employee" className="bg-blue-600 text-white px-4 py-2 rounded-lg shadow hover:bg-blue-700 transition text-center">
               + Add Employee
@@ -78,7 +85,7 @@ const List = () => {
           </div>
         </div>
         {/* Table */}
-         <DataTable className="min-w-full border border-gray-200 rounded-lg" columns={columns} data={employees} />
+         <DataTable className="min-w-full border border-gray-200 rounded-lg" columns={columns} data={filteredEmployee} pagination/>
       </motion.div>
     </div>
     )
