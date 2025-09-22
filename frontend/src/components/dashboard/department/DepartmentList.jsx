@@ -111,16 +111,9 @@ const DepartmentList = () => {
 
       {/* Table */}
       <DataTable 
-      columns={columns} data={filteredDepartments}
+      columns={columns} data={filteredDepartments} pagination
       />
 
-      {/* Footer */}
-      <div className="flex justify-between items-center mt-4 text-sm text-gray-600">
-        <span>Rows per page: 10</span>
-        <span>
-          1–{filteredDepartments.length} of {departments.length}
-        </span>
-      </div>
     </div>
     }</>
   );

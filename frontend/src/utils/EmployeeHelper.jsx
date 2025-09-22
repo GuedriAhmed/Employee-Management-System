@@ -8,7 +8,16 @@ export const columns = [
      { name: 'Image ', selector: (row) => row.profileImage, sortable: true,width:"90px" },
       { name: 'Department ', selector: (row) => row.dep_name, sortable: true,width:"120px" },
        { name: 'DOB ', selector: (row) => row.dob, sortable: true ,width:"130px"},
-    { name: 'Action', selector: (row) => row.action, sortable: true,center:"true" },
+    {
+  name: "Action",
+  selector: (row) => row.action,
+  sortable: false,
+  cell: (row) => (
+    <div className="flex justify-center w-full">
+      {row.action}
+    </div>
+  ),
+}
 
 ]
 
@@ -32,6 +41,27 @@ export const columns = [
         }    
       } 
       return departments
+    }
+  //fech employees for salary 
+  export const getEmployees = async (id) => {
+   
+      let employees;
+     try {
+        const response = await axios.get(`http://localhost:5000/api/employee/department/${id}`,{
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("token")}`
+          }
+        });
+        if(response.data.success){
+            employees = response.data.employees
+        }
+
+     } catch (error) {
+        if(error.response && !error.response.data.success){
+              alert(error.response.data.error);
+        }    
+      } 
+      return employees
     }
 
    export const EmployeeButtons = ({ Id }) => {

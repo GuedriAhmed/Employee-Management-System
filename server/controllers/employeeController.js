@@ -115,7 +115,19 @@ const updateEmployee= async (req,res) =>{
   }catch(error){
 return res.status(500).json({ success: false, error: 'Server error updating employees' });
   }
-
 }
 
-export {addEmployee,upload,getEmployees,getEmployee,updateEmployee}
+
+const fetchEmlpoyeesByDepId = async (req,res) => {
+const {id}=req.params;
+    try {
+    const employees = await Employee.find({department:id})
+    return res.status(200).json({ success: true, employees });
+  }
+  catch (error) {
+    console.error('Error fetching departments:', error);
+    return res.status(500).json({ success: false, error: 'Server error fetching employeesByDepId' });
+  }
+}
+
+export {addEmployee,upload,getEmployees,getEmployee,updateEmployee,fetchEmlpoyeesByDepId}
